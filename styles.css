@@ -210,6 +210,7 @@ nav {
     height: auto;
     margin-top: 120px;
     margin-bottom: 50px; /* 50px margin above product section */
+    border-radius: 8px;
 }
 
 .product-section {
