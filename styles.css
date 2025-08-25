@@ -5,9 +5,38 @@ body {
     margin: 0;
     padding: 0;
     background: radial-gradient(circle, #f0f0f0, #e0e0e0);
-    min-height: 100vh;
+    min-height: 100%;
+    overflow-x: hidden;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: none;
 }
 
+html {
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(circle, #f0f0f0, #e0e0e0);
+    height: 100%;
+    box-sizing: border-box;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    -webkit-overflow-scrolling: touch;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* Prevent overscroll and ensure background coverage */
+html, body {
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Ensure the main content area handles scrolling properly */
 .container {
     width: calc(100% - 800px);
     max-width: 1200px;
@@ -15,6 +44,7 @@ body {
     position: relative;
     margin: 0 auto;
     padding-top: 180px; /* Adjust this value to account for navbar height + margins */
+    overscroll-behavior: contain;
 }
 
 /* Responsive grid system */
@@ -31,6 +61,7 @@ body {
 /* Responsive typography */
 html {
     font-size: 16px;
+    scroll-behavior: smooth;
 }
 
 @media screen and (max-width: 768px) {
@@ -66,15 +97,59 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
-    padding: 10px 20px;
-    border-radius: 8px;
+    background: transparent;
+    backdrop-filter: blur(35px) saturate(1.4) contrast(1.1);
+    -webkit-backdrop-filter: blur(35px) saturate(1.4) contrast(1.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 12px 24px;
+    border-radius: 16px;
     position: fixed;
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
     box-sizing: border-box;
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.06),
+        0 2px 10px rgba(0, 0, 0, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+    transition: all 0.3s ease;
+}
+
+nav::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.12) 0%, 
+        rgba(255, 255, 255, 0.06) 50%, 
+        rgba(255, 255, 255, 0.02) 100%);
+    border-radius: 16px;
+    pointer-events: none;
+    z-index: -1;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+nav::after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    right: 1px;
+    bottom: 1px;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.6) 0%, 
+        rgba(255, 255, 255, 0.3) 50%, 
+        rgba(255, 255, 255, 0.15) 100%);
+    border-radius: 15px;
+    pointer-events: none;
+    z-index: -2;
+    filter: blur(2px);
+    opacity: 0.7;
 }
 
 .logo {
@@ -96,15 +171,16 @@ nav {
 
 .nav-btn, .learn-more-btn {
     font-family: 'Inter', sans-serif;
-    font-size: 12px;
+    font-size: 10px;
     background: none;
     border: none;
     cursor: pointer;
     padding: 8px 16px;
     white-space: nowrap;
     text-decoration: none; /* Remove underline from links */
-    color: inherit; /* Use the parent's text color */
-    transition: opacity 0.3s ease; /* Smooth transition for hover effect */
+    color: #2a2a2a; /* Darker for better contrast */
+    font-weight: 500;
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
 }
 
 .nav-btn:hover, .learn-more-btn:hover {
@@ -112,9 +188,23 @@ nav {
 }
 
 .contact-btn, .learn-more-btn {
-    background-color: #007bff;
+    background: #007AFF;
     color: white;
-    border-radius: 4px;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.contact-btn::before, .learn-more-btn::before {
+    display: none;
+}
+
+.contact-btn:hover, .learn-more-btn:hover {
+    background: #0056CC;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* Responsive adjustments */
@@ -136,7 +226,7 @@ nav {
     }
     
     .container {
-        padding-top: 220px; /* Increase padding for stacked navbar */
+        padding-top: 180px; /* Reduced padding for smaller spacing */
     }
     
     nav {
@@ -148,7 +238,7 @@ nav {
     }
     
     .nav-btn, .contact-btn {
-        font-size: 14px; /* Increase font size for nav links */
+        font-size: 11px; /* Smaller font size for nav links */
         padding: 6px 12px;
     }
     
@@ -167,13 +257,15 @@ nav {
 
 @media screen and (max-width: 576px) {
     .nav-btn, .contact-btn {
-        font-size: 14px; /* Further increase font size for very small screens */
+        font-size: 10px; /* Smaller font size for very small screens */
         padding: 4px 8px;
     }
     
     .logo img {
         height: 18px;
     }
+    
+
 }
 
 @media screen and (max-width: 480px) {
@@ -189,28 +281,36 @@ nav {
 
 .main-title {
     font-family: 'Didot', 'Times New Roman', serif; /* Fallback to Times New Roman if Didot is not available */
-    font-size: 80px;
+    font-size: 64px;
     font-weight: bold;
     text-transform: uppercase;
-    color: #0e0f0f; /* Apple blue color */
+    color: #1a1a1a; /* Darker for better contrast */
     margin-bottom: 16px;
     margin-top: -24px;
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.9), 0 1px 2px rgba(255, 255, 255, 0.8);
 }
 
 .main-description {
     font-family: 'Inter', sans-serif;
-    font-weight: 300; /* Light */
-    font-size: 32px;
-    line-height: 1.5;
-    color: #8c8c8c;
+    font-weight: 400; /* Regular weight for better readability */
+    font-size: 24px;
+    line-height: 1.4;
+    color: #4a4a4a; /* Darker grey for better contrast */
+    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9), 0 1px 2px rgba(255, 255, 255, 0.7);
 }
 
 .device-image {
     max-width: 100%;
     height: auto;
-    margin-top: 80px;
+    margin-top: 120px;
     margin-bottom: 50px; /* 50px margin above product section */
-    border-radius: 8px;
+}
+
+@media screen and (max-width: 768px) {
+    .device-image {
+        margin-top: 40px;
+        margin-bottom: 30px;
+    }
 }
 
 .product-section {
@@ -235,28 +335,29 @@ nav {
 
 .product-title {
     font-family: 'Didot', 'Times New Roman', serif;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
     margin: 0 0 10px 0;
     text-align: left; /* Ensure left alignment */
+    color: #1a1a1a; /* Darker for better contrast */
 }
 
 .product-description {
     font-family: 'Inter', sans-serif;
-    font-weight: 200; /* Extra Light */
-    font-size: 20px;
-    line-height: 1.2;
+    font-weight: 300; /* Light weight for better readability */
+    font-size: 16px;
+    line-height: 1.3;
     margin: 0;
     max-width: 75%; /* Set max-width to 75% of its container */
     text-align: left; /* Ensure left alignment */
-    color: #7c7c7c;
+    color: #4a4a4a; /* Darker for better contrast */
 }
 
 .learn-more-btn {
     font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    font-weight: 400; /* Regular weight */
-    background-color: #000000; /* Dark Apple blue */
+    font-size: 10px;
+    font-weight: 500; /* Medium weight for better readability */
+    background-color: #1a1a1a; /* Darker for better contrast */
     color: white;
     border: none;
     padding: 8px 16px;
@@ -275,54 +376,57 @@ nav {
 /* Responsive adjustments */
 @media screen and (max-width: 1200px) {
     .main-title {
-        font-size: 80px;
-    }
-    .main-description {
-        font-size: 32px;
-    }
-    .product-title {
-        font-size: 22px;
-    }
-    .product-description {
-        font-size: 18px;
-    }
-}
-
-@media screen and (max-width: 992px) {
-    .main-title {
-        font-size: 64px;
-    }
-    .main-description {
-        font-size: 32px;
-    }
-    .product-title {
-        font-size: 20px;
-    }
-    .product-description {
-        font-size: 16px;
-        max-width: 85%; /* Increase max-width for better readability on smaller screens */
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .main-title {
         font-size: 56px;
     }
     .main-description {
-        font-size: 24px;
-        padding-bottom: -48px;
+        font-size: 20px;
     }
     .product-title {
         font-size: 18px;
     }
     .product-description {
         font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .main-title {
+        font-size: 48px;
+    }
+    .main-description {
+        font-size: 18px;
+    }
+    .product-title {
+        font-size: 16px;
+    }
+    .product-description {
+        font-size: 13px;
+        max-width: 85%; /* Increase max-width for better readability on smaller screens */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .main-title {
+        font-size: 40px;
+        margin-top: -60px;
+        margin-bottom: 12px;
+    }
+    .main-description {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+    .product-title {
+        font-size: 14px;
+    }
+    .product-description {
+        font-size: 12px;
         max-width: 90%; /* Further increase max-width for smaller screens */
     }
     .learn-more-btn {
-        font-size: 11px;
+        font-size: 9px;
         padding: 6px 12px;
     }
+
 }
 
 @media screen and (max-width: 576px) {
@@ -337,14 +441,14 @@ nav {
         width: 100%; /* Ensure full width on small screens */
     }
     .product-title {
-        font-size: 16px;
+        font-size: 12px;
     }
     .product-description {
-        font-size: 12px;
+        font-size: 10px;
         max-width: 100%; /* Full width on very small screens */
     }
     .learn-more-btn {
-        font-size: 10px;
+        font-size: 8px;
         padding: 4px 8px;
         align-self: flex-start; /* Align button to the left on small screens */
     }
@@ -436,9 +540,10 @@ footer {
 
 .footer-text {
     font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    color: #333;
+    font-size: 10px;
+    color: #2a2a2a; /* Darker for better contrast */
     text-align: left;
+    font-weight: 400;
 }
 
 .social-icons {
@@ -571,16 +676,5 @@ footer {
     }
 }
 
-/* Added styles for the new button */
-.main-btn {
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    background-color: #0e0f0f; /* Same color as the main title */
-    color: white;
-    border: none;
-    padding: 10px 20px; /* Add padding */
-    border-radius: 4px; /* Optional: rounded corners */
-    transition: background-color 0.3s ease;
-    margin-top: 20px; /* Space above the button */
-}
+/* Removed Coming Soon button styles */
 
