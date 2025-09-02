@@ -302,14 +302,14 @@ nav::after {
 .device-image {
     max-width: 100%;
     height: auto;
-    margin-top: 120px;
-    margin-bottom: 50px; /* 50px margin above product section */
+    margin-top: 80px;
+    margin-bottom: 10px; /* 50px margin above product section */
 }
 
 @media screen and (max-width: 768px) {
     .device-image {
         margin-top: 40px;
-        margin-bottom: 30px;
+        margin-bottom: 10px;
     }
 }
 
