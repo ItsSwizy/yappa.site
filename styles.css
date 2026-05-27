@@ -197,8 +197,8 @@ h1 {
 
 @media (max-width: 720px) {
   .hero {
-    --media-y: 80svh;
-    --word-y: 81svh;
+    --media-y: 75svh;
+    --word-y: 76svh;
     min-height: 140svh;
   }
 
@@ -209,7 +209,7 @@ h1 {
 
   .hero-copy {
     width: min(520px, calc(100% - 28px));
-    margin-top: clamp(92px, 13svh, 118px);
+    margin-top: clamp(112px, 16svh, 140px);
     padding-bottom: 0;
   }
 
@@ -252,13 +252,13 @@ h1 {
 
 @media (max-width: 390px) {
   .hero {
-    --media-y: 82svh;
-    --word-y: 83svh;
+    --media-y: 76svh;
+    --word-y: 77svh;
   }
 
   .hero-copy {
     width: calc(100% - 28px);
-    margin-top: 86px;
+    margin-top: 112px;
   }
 
   .spark {
