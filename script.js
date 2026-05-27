@@ -28,7 +28,7 @@ function getQuietWordMode() {
 }
 
 function getQuietWordText(mode) {
-  return mode === "mobile" ? "SSSSHT" : "SSSSSHT";
+  return mode === "mobile" ? "SSSS HT" : "SSSSSHT";
 }
 
 function syncQuietWordText() {
