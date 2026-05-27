@@ -24,10 +24,12 @@ let lastFrameTime = 0;
 let quietWordMode = "";
 
 function getQuietWordMode() {
+  if (window.matchMedia("(max-width: 390px)").matches) return "mini";
   return window.matchMedia("(max-width: 720px)").matches ? "mobile" : "desktop";
 }
 
 function getQuietWordText(mode) {
+  if (mode === "mini") return "SSSSHT";
   return mode === "mobile" ? "SSSS HT" : "SSSSSHT";
 }
 
