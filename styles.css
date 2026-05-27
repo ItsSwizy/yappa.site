@@ -31,7 +31,7 @@ body {
   overflow: hidden;
   background:
     linear-gradient(rgba(216, 211, 201, 0.1), rgba(216, 211, 201, 0.2)),
-    url("assets/noise-texture-background.jpg") center / cover no-repeat;
+    url("assets/noise-texture-background.jpg") top center / cover no-repeat;
 }
 
 .hero::before {
@@ -197,13 +197,19 @@ h1 {
 
 @media (max-width: 720px) {
   .hero {
-    --media-y: 77svh;
-    --word-y: 78svh;
+    --media-y: 80.5svh;
+    --word-y: 81.5svh;
+    min-height: 140svh;
+  }
+
+  .hero::before,
+  .grain {
+    height: 140svh;
   }
 
   .hero-copy {
     width: min(520px, calc(100% - 28px));
-    margin-top: clamp(40px, 6svh, 56px);
+    margin-top: clamp(68px, 9svh, 86px);
     padding-bottom: 0;
   }
 
@@ -246,13 +252,13 @@ h1 {
 
 @media (max-width: 390px) {
   .hero {
-    --media-y: 79svh;
-    --word-y: 80svh;
+    --media-y: 82.5svh;
+    --word-y: 83.5svh;
   }
 
   .hero-copy {
     width: calc(100% - 28px);
-    margin-top: 42px;
+    margin-top: 64px;
   }
 
   .spark {
