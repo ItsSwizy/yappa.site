@@ -77,8 +77,32 @@ function animateSequence(timestamp) {
   }
 }
 
-window.addEventListener("DOMContentLoaded", () => {
+function loadImage(src) {
+  const image = new Image();
+  image.src = src;
+
+  if (image.complete) {
+    return Promise.resolve(image);
+  }
+
+  return new Promise((resolve) => {
+    image.onload = () => resolve(image);
+    image.onerror = () => resolve(image);
+  });
+}
+
+function waitForHeroAssets() {
+  return Promise.all([
+    loadImage("assets/noise-texture-background.jpg"),
+    loadImage("assets/group-2.svg"),
+    ...sequenceFrames.map(loadImage),
+  ]);
+}
+
+window.addEventListener("DOMContentLoaded", async () => {
   syncQuietWordText();
+  await waitForHeroAssets();
+  document.body.classList.add("assets-ready");
   requestAnimationFrame(animateSequence);
 });
 

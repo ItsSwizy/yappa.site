@@ -29,9 +29,15 @@ body {
   isolation: isolate;
   min-height: 118svh;
   overflow: hidden;
+  opacity: 1;
   background:
     linear-gradient(rgba(216, 211, 201, 0.1), rgba(216, 211, 201, 0.2)),
     url("assets/noise-texture-background.jpg") top center / cover no-repeat;
+  transition: opacity 220ms ease;
+}
+
+body:not(.assets-ready) .hero {
+  opacity: 0;
 }
 
 .hero::before {
