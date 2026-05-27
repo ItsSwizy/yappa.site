@@ -170,6 +170,7 @@ h1 {
   font-weight: 700;
   line-height: 0.8;
   text-align: center;
+  white-space: nowrap;
   transform: translate(-50%, -50%) scaleX(1.04);
   opacity: 1;
   mask-image: linear-gradient(#000, #000), linear-gradient(#000, #000);
