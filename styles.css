@@ -197,8 +197,8 @@ h1 {
 
 @media (max-width: 720px) {
   .hero {
-    --media-y: 83svh;
-    --word-y: 84svh;
+    --media-y: 80svh;
+    --word-y: 81svh;
     min-height: 140svh;
   }
 
@@ -252,8 +252,8 @@ h1 {
 
 @media (max-width: 390px) {
   .hero {
-    --media-y: 85svh;
-    --word-y: 86svh;
+    --media-y: 82svh;
+    --word-y: 83svh;
   }
 
   .hero-copy {
