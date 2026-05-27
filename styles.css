@@ -218,7 +218,7 @@ h1 {
   }
 
   h1 {
-    font-size: clamp(18px, 5.1vw, 23px);
+    font-size: clamp(19px, 5.4vw, 24px);
     line-height: 1.08;
     margin-bottom: 14px;
     white-space: nowrap;
@@ -227,7 +227,7 @@ h1 {
   .intro {
     max-width: 360px;
     margin: 0 auto;
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.24;
   }
 
@@ -239,7 +239,7 @@ h1 {
   .waitlist-button {
     min-height: 42px;
     margin-top: 22px;
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .device-sequence {
@@ -268,12 +268,12 @@ h1 {
   }
 
   h1 {
-    font-size: 19px;
+    font-size: 20px;
   }
 
   .intro {
     max-width: 330px;
-    font-size: 13.5px;
+    font-size: 14.5px;
     line-height: 1.24;
   }
 
@@ -281,12 +281,12 @@ h1 {
     min-height: 38px;
     margin-top: 20px;
     padding: 0 22px;
-    font-size: 11px;
+    font-size: 12px;
   }
 }
 
 @media (max-width: 340px) {
   h1 {
-    font-size: 18px;
+    font-size: 19px;
   }
 }
