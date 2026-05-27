@@ -197,19 +197,32 @@ h1 {
 
 @media (max-width: 720px) {
   .hero {
-    --media-y: 82.5svh;
-    --word-y: 83.5svh;
+    --media-y: 77svh;
+    --word-y: 78svh;
+  }
+
+  .hero-copy {
+    width: min(520px, calc(100% - 28px));
+    margin-top: clamp(40px, 6svh, 56px);
+    padding-bottom: 0;
+  }
+
+  .spark {
+    margin-bottom: clamp(30px, 4.8svh, 42px);
   }
 
   h1 {
     font-size: clamp(18px, 5.1vw, 23px);
     line-height: 1.08;
+    margin-bottom: 14px;
     white-space: nowrap;
   }
 
   .intro {
-    font-size: 16px;
-    line-height: 1.22;
+    max-width: 360px;
+    margin: 0 auto;
+    font-size: 15px;
+    line-height: 1.24;
   }
 
   .quiet-word {
@@ -219,6 +232,7 @@ h1 {
 
   .waitlist-button {
     min-height: 42px;
+    margin-top: 22px;
     font-size: 12px;
   }
 
@@ -232,19 +246,19 @@ h1 {
 
 @media (max-width: 390px) {
   .hero {
-    --media-y: 85.5svh;
-    --word-y: 86.5svh;
+    --media-y: 79svh;
+    --word-y: 80svh;
   }
 
   .hero-copy {
     width: calc(100% - 28px);
-    margin-top: 48px;
+    margin-top: 42px;
   }
 
   .spark {
     width: 28px;
     height: 28px;
-    margin-bottom: 38px;
+    margin-bottom: 30px;
   }
 
   h1 {
@@ -252,12 +266,14 @@ h1 {
   }
 
   .intro {
-    font-size: 14px;
+    max-width: 330px;
+    font-size: 13.5px;
     line-height: 1.24;
   }
 
   .waitlist-button {
     min-height: 38px;
+    margin-top: 20px;
     padding: 0 22px;
     font-size: 11px;
   }
