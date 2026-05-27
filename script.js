@@ -10,7 +10,7 @@ const quietWordFrameDesktop = quietWordFrameDefault - 2;
 const quietWordRevealFrames = 6;
 const sequenceFrames = Array.from({ length: lastFrame - firstFrame + 1 }, (_, index) => {
   const frame = String(firstFrame + index).padStart(4, "0");
-  return `assets/test-2-sequence/test${frame}.png`;
+  return `assets/test-2-sequence-webp/test${frame}.webp`;
 });
 
 const preloadedFrames = sequenceFrames.map((src) => {
