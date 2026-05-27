@@ -197,12 +197,12 @@ h1 {
 
 @media (max-width: 720px) {
   .hero {
-    --media-y: 79svh;
-    --word-y: 80svh;
+    --media-y: 86svh;
+    --word-y: 87svh;
   }
 
   h1 {
-    font-size: 26px;
+    font-size: clamp(18px, 5.1vw, 23px);
     line-height: 1.08;
     white-space: nowrap;
   }
@@ -232,8 +232,8 @@ h1 {
 
 @media (max-width: 390px) {
   .hero {
-    --media-y: 81svh;
-    --word-y: 82svh;
+    --media-y: 90svh;
+    --word-y: 91svh;
   }
 
   .hero-copy {
@@ -248,7 +248,7 @@ h1 {
   }
 
   h1 {
-    font-size: 23px;
+    font-size: 19px;
   }
 
   .intro {
@@ -265,6 +265,6 @@ h1 {
 
 @media (max-width: 340px) {
   h1 {
-    font-size: 21px;
+    font-size: 18px;
   }
 }
