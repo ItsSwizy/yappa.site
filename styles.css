@@ -203,6 +203,20 @@ h1 {
   transform: translate(-50%, -50%);
 }
 
+@media (max-width: 1100px) and (min-width: 721px) {
+  h1 {
+    font-size: 34px;
+  }
+
+  .intro {
+    font-size: 21px;
+  }
+
+  .waitlist-button {
+    font-size: 14px;
+  }
+}
+
 @media (max-width: 720px) {
   .hero {
     --media-y: 75svh;
