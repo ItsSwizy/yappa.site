@@ -226,7 +226,7 @@ h1 {
 
   .hero-copy {
     width: min(520px, calc(100% - 28px));
-    margin-top: clamp(112px, 16svh, 140px);
+    margin-top: clamp(88px, 13svh, 116px);
     padding-bottom: 0;
   }
 
@@ -275,7 +275,7 @@ h1 {
 
   .hero-copy {
     width: calc(100% - 28px);
-    margin-top: 112px;
+    margin-top: 88px;
   }
 
   .spark {
