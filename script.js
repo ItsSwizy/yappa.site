@@ -2,6 +2,7 @@ const deviceSequence = document.querySelector(".device-sequence");
 const quietWord = document.querySelector(".quiet-word");
 const hero = document.querySelector(".hero");
 const intro = document.querySelector(".intro");
+const scrollTitle = document.querySelector(".scroll-title");
 
 const firstFrame = 18;
 const lastFrame = 48;
@@ -28,6 +29,7 @@ let introAnimationComplete = false;
 let scrollTicking = false;
 let lastScrollY = window.scrollY;
 let scrollingUp = false;
+let scrollTitleSpawned = false;
 
 function getQuietWordMode() {
   if (window.matchMedia("(max-width: 390px)").matches) return "mini";
@@ -125,10 +127,22 @@ function updateDeviceFromScroll() {
 
   const quietWordRect = quietWord.getBoundingClientRect();
   const introRect = intro.getBoundingClientRect();
+  const showScrollTitle = frameIndex <= scrollTitleVisibleFrame;
+
+  if (showScrollTitle && !scrollTitleSpawned) {
+    const spawnTop = window.scrollY + window.innerHeight * 0.91;
+    scrollTitle.style.setProperty("--scroll-title-top", `${spawnTop}px`);
+    scrollTitleSpawned = true;
+  }
+
+  if (!showScrollTitle) {
+    scrollTitleSpawned = false;
+  }
+
   hero.classList.toggle("scrolling-up", scrollingUp);
   hero.classList.toggle("button-pinned", introRect.bottom < 0);
   hero.classList.toggle("quiet-word-fading", quietWordRect.top < window.innerHeight * 0.5);
-  hero.classList.toggle("scroll-title-visible", frameIndex <= scrollTitleVisibleFrame);
+  hero.classList.toggle("scroll-title-visible", showScrollTitle);
 }
 
 function requestScrollUpdate() {

@@ -218,10 +218,10 @@ h1 {
   position: absolute;
   z-index: 4;
   left: 50%;
-  top: var(--word-y);
+  top: var(--scroll-title-top, 92svh);
   width: min(920px, calc(100% - 40px));
   text-align: center;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   pointer-events: none;
 }
 
@@ -234,7 +234,7 @@ h1 {
   text-transform: uppercase;
   white-space: nowrap;
   opacity: 0;
-  transform: translateY(18px);
+  transform: translateY(28px);
   transition:
     opacity 397ms ease 110ms,
     transform 397ms ease 110ms;
@@ -248,7 +248,7 @@ h1 {
   font-weight: 300;
   line-height: 1.2;
   opacity: 0;
-  transform: translateY(18px);
+  transform: translateY(28px);
   transition:
     opacity 397ms ease 210ms,
     transform 397ms ease 210ms;
@@ -316,7 +316,6 @@ h1 {
   }
 
   .scroll-title {
-    top: 50svh;
     width: calc(100% - 28px);
   }
 
