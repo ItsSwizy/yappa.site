@@ -70,7 +70,7 @@ body:not(.assets-ready) .hero {
   position: relative;
   z-index: 4;
   width: min(760px, calc(100% - 40px));
-  margin: clamp(54px, 7.2svh, 84px) auto 0;
+  margin: clamp(66px, 8svh, 96px) auto 0;
   padding-bottom: 84px;
   text-align: center;
 }
@@ -157,6 +157,16 @@ h1 {
   background: #fff3ea;
 }
 
+.button-pinned .waitlist-button {
+  position: fixed;
+  z-index: 10;
+  top: max(18px, env(safe-area-inset-top));
+  right: max(20px, env(safe-area-inset-right));
+  margin-top: 0;
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .copy-visible .spark,
 .copy-visible h1,
 .copy-visible .intro,
@@ -180,6 +190,7 @@ h1 {
   white-space: nowrap;
   transform: translate(-50%, -50%) scaleX(1.04);
   opacity: 1;
+  transition: opacity 420ms ease;
   mask-image: linear-gradient(#000, #000), linear-gradient(#000, #000);
   mask-position: left top, right top;
   mask-repeat: no-repeat;
@@ -203,12 +214,74 @@ h1 {
   transform: translate(-50%, -50%);
 }
 
+.scroll-title {
+  position: absolute;
+  z-index: 4;
+  left: 50%;
+  top: var(--word-y);
+  width: min(920px, calc(100% - 40px));
+  text-align: center;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.scroll-title h2 {
+  margin: 0 0 16px;
+  color: var(--ink);
+  font-size: 40px;
+  line-height: 1.04;
+  font-weight: 600;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 397ms ease 110ms,
+    transform 397ms ease 110ms;
+}
+
+.scroll-description {
+  max-width: 620px;
+  margin: 0 auto;
+  color: rgba(23, 37, 15, 0.86);
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.2;
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 397ms ease 210ms,
+    transform 397ms ease 210ms;
+}
+
+.quiet-word-fading .quiet-word {
+  opacity: 0;
+}
+
+.scroll-title-visible .scroll-title h2,
+.scroll-title-visible .scroll-description {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scrolling-up .scroll-title h2,
+.scrolling-up .scroll-description {
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease;
+}
+
 @media (max-width: 1100px) and (min-width: 721px) {
-  h1 {
+  h1,
+  .scroll-title h2 {
     font-size: 34px;
   }
 
   .intro {
+    font-size: 21px;
+  }
+
+  .scroll-description {
     font-size: 21px;
   }
 
@@ -226,7 +299,7 @@ h1 {
 
   .hero-copy {
     width: min(520px, calc(100% - 28px));
-    margin-top: clamp(88px, 13svh, 116px);
+    margin-top: clamp(78px, 11svh, 104px);
     padding-bottom: 0;
   }
 
@@ -234,16 +307,27 @@ h1 {
     margin-bottom: clamp(30px, 4.8svh, 42px);
   }
 
-  h1 {
+  h1,
+  .scroll-title h2 {
     font-size: clamp(19px, 5.4vw, 24px);
     line-height: 1.08;
     margin-bottom: 14px;
     white-space: nowrap;
   }
 
+  .scroll-title {
+    width: calc(100% - 28px);
+  }
+
   .intro {
     max-width: 360px;
     margin: 0 auto;
+    font-size: 16px;
+    line-height: 1.24;
+  }
+
+  .scroll-description {
+    max-width: 360px;
     font-size: 16px;
     line-height: 1.24;
   }
@@ -257,6 +341,12 @@ h1 {
     min-height: 42px;
     margin-top: 22px;
     font-size: 13px;
+  }
+
+  .button-pinned .waitlist-button {
+    top: max(14px, env(safe-area-inset-top));
+    right: max(14px, env(safe-area-inset-right));
+    min-height: 38px;
   }
 
   .device-sequence {
@@ -275,7 +365,7 @@ h1 {
 
   .hero-copy {
     width: calc(100% - 28px);
-    margin-top: 88px;
+    margin-top: 78px;
   }
 
   .spark {
@@ -284,11 +374,18 @@ h1 {
     margin-bottom: 30px;
   }
 
-  h1 {
+  h1,
+  .scroll-title h2 {
     font-size: 20px;
   }
 
   .intro {
+    max-width: 330px;
+    font-size: 14.5px;
+    line-height: 1.24;
+  }
+
+  .scroll-description {
     max-width: 330px;
     font-size: 14.5px;
     line-height: 1.24;
@@ -303,7 +400,8 @@ h1 {
 }
 
 @media (max-width: 340px) {
-  h1 {
+  h1,
+  .scroll-title h2 {
     font-size: 19px;
   }
 }
