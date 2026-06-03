@@ -316,6 +316,7 @@ h1 {
   }
 
   .scroll-title {
+    top: 50svh;
     width: calc(100% - 28px);
   }
 
