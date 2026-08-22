@@ -42,7 +42,20 @@ const defaultShaderSettings = {
   imageBands: 5,
 };
 
-const shaderSettings = { ...defaultShaderSettings };
+const shaderSettingsStorageKey = "muzelDissolveSettings";
+
+function loadSavedShaderSettings() {
+  try {
+    const savedSettings = JSON.parse(localStorage.getItem(shaderSettingsStorageKey) || "{}");
+    return Object.fromEntries(
+      Object.entries(savedSettings).filter(([key, value]) => key in defaultShaderSettings && Number.isFinite(value)),
+    );
+  } catch {
+    return {};
+  }
+}
+
+const shaderSettings = { ...defaultShaderSettings, ...loadSavedShaderSettings() };
 const preloadedFrames = sequenceFrames.map((src) => {
   const image = new Image();
   image.src = src;

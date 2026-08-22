@@ -386,6 +386,7 @@ h1 {
   }
 
   .scroll-title {
+    bottom: calc(-2px - env(safe-area-inset-bottom));
     width: calc(100% - 28px);
   }
 
