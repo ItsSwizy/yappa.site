@@ -29,6 +29,10 @@ body {
   position: relative;
   isolation: isolate;
   min-height: var(--hero-height);
+  --dissolve-progress: 0;
+  --dissolve-source-opacity: 1;
+  --dissolve-particle-opacity: 0;
+  --coming-soon-opacity: 0;
   overflow: hidden;
   opacity: 1;
   background:
@@ -76,9 +80,9 @@ body:not(.assets-ready) .hero {
 }
 
 .spark {
-  width: 32px;
-  height: 32px;
-  margin: 0 auto clamp(44px, 7svh, 74px);
+  width: 24px;
+  height: 24px;
+  margin: 0 auto 32px;
   display: block;
   object-fit: contain;
   opacity: 0;
@@ -215,19 +219,27 @@ h1 {
 }
 
 .scroll-title {
-  position: absolute;
+  position: fixed;
   z-index: 4;
-  left: 50%;
-  top: var(--scroll-title-top, 92svh);
+  left: 0;
+  right: 0;
+  top: auto;
+  bottom: 0;
   width: min(920px, calc(100% - 40px));
+  margin: 0 auto;
   text-align: center;
-  transform: translateX(-50%);
   pointer-events: none;
+}
+
+.scroll-title h2,
+.scroll-description {
+  position: relative;
+  top: 80px;
 }
 
 .scroll-title h2 {
   margin: 0 0 16px;
-  color: var(--ink);
+  color: var(--quiet);
   font-size: 40px;
   line-height: 1.04;
   font-weight: 600;
@@ -241,7 +253,7 @@ h1 {
 }
 
 .scroll-description {
-  max-width: 620px;
+  max-width: 560px;
   margin: 0 auto;
   color: rgba(23, 37, 15, 0.86);
   font-size: 24px;
@@ -254,14 +266,68 @@ h1 {
     transform 397ms ease 210ms;
 }
 
+.scroll-image {
+  display: block;
+  width: clamp(576px, calc(26.96vw + 513px), 901px);
+  max-width: none;
+  height: auto;
+  margin: 120px auto 0;
+  opacity: 0;
+  object-fit: contain;
+  transform: translateY(0);
+  transition: opacity 160ms ease 40ms;
+}
+
 .quiet-word-fading .quiet-word {
   opacity: 0;
 }
 
 .scroll-title-visible .scroll-title h2,
 .scroll-title-visible .scroll-description {
-  opacity: 1;
+  opacity: var(--dissolve-source-opacity);
   transform: translateY(0);
+}
+
+.scroll-title-visible .scroll-image {
+  opacity: var(--dissolve-source-opacity);
+}
+
+.dissolve-active .scroll-title h2,
+.dissolve-active .scroll-description,
+.dissolve-active .scroll-image {
+  transition: none;
+}
+
+.dissolve-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 7;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: var(--dissolve-particle-opacity);
+}
+
+.dissolve-active .dissolve-canvas {
+  opacity: var(--dissolve-particle-opacity);
+}
+
+.coming-soon-title {
+  position: fixed;
+  z-index: 8;
+  left: 50%;
+  top: 50%;
+  margin: 0;
+  color: var(--quiet);
+  font-size: 40px;
+  line-height: 1.04;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: var(--coming-soon-opacity);
+  transform: translate(-50%, -50%);
 }
 
 .scrolling-up .scroll-title h2,
@@ -273,7 +339,8 @@ h1 {
 
 @media (max-width: 1100px) and (min-width: 721px) {
   h1,
-  .scroll-title h2 {
+  .scroll-title h2,
+  .coming-soon-title {
     font-size: 34px;
   }
 
@@ -304,11 +371,14 @@ h1 {
   }
 
   .spark {
-    margin-bottom: clamp(30px, 4.8svh, 42px);
+    width: 24px;
+    height: 24px;
+    margin-bottom: 32px;
   }
 
   h1,
-  .scroll-title h2 {
+  .scroll-title h2,
+  .coming-soon-title {
     font-size: clamp(19px, 5.4vw, 24px);
     line-height: 1.08;
     margin-bottom: 14px;
@@ -317,6 +387,11 @@ h1 {
 
   .scroll-title {
     width: calc(100% - 28px);
+  }
+
+  .scroll-title h2,
+  .scroll-description {
+    top: calc(-40svh + 50%);
   }
 
   .intro {
@@ -332,6 +407,11 @@ h1 {
     line-height: 1.24;
   }
 
+  .scroll-image {
+    margin-top: 90px;
+    transform: translateX(-13%);
+  }
+
   .quiet-word {
     width: 140vw;
     font-size: 152px;
@@ -345,8 +425,13 @@ h1 {
 
   .button-pinned .waitlist-button {
     top: max(14px, env(safe-area-inset-top));
-    right: max(14px, env(safe-area-inset-right));
+    right: 0;
+    left: 0;
+    width: max-content;
+    margin-right: auto;
+    margin-left: auto;
     min-height: 38px;
+    transform: translateY(0);
   }
 
   .device-sequence {
@@ -355,6 +440,7 @@ h1 {
     object-fit: cover;
     transform: translate(-50%, -50%) scale(0.8);
   }
+
 }
 
 @media (max-width: 390px) {
@@ -369,13 +455,14 @@ h1 {
   }
 
   .spark {
-    width: 28px;
-    height: 28px;
-    margin-bottom: 30px;
+    width: 24px;
+    height: 24px;
+    margin-bottom: 32px;
   }
 
   h1,
-  .scroll-title h2 {
+  .scroll-title h2,
+  .coming-soon-title {
     font-size: 20px;
   }
 
@@ -391,6 +478,10 @@ h1 {
     line-height: 1.24;
   }
 
+  .scroll-image {
+    transform: translateX(-16%);
+  }
+
   .waitlist-button {
     min-height: 38px;
     margin-top: 20px;
@@ -401,7 +492,8 @@ h1 {
 
 @media (max-width: 340px) {
   h1,
-  .scroll-title h2 {
+  .scroll-title h2,
+  .coming-soon-title {
     font-size: 19px;
   }
 }
